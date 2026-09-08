@@ -65,7 +65,7 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 const hiddenElements = document.querySelectorAll(
-    '.service-card, .about-item, .fleet-image, .fleet-content, .gallery-grid img'
+    '.service-card, .about-item, .fleet-image, .fleet-content, .repuestos-image, .repuestos-content, .gallery-grid img'
 );
 
 hiddenElements.forEach(el => observer.observe(el));
@@ -77,12 +77,14 @@ hiddenElements.forEach(el => observer.observe(el));
 
 const form = document.querySelector('.contact-form');
 
-form.addEventListener('submit', (e) => {
+if (form) {
+    form.addEventListener('submit', (e) => {
 
-    e.preventDefault();
+        e.preventDefault();
 
-    alert('¡Gracias por contactarte! Nos comunicaremos a la brevedad.');
+        alert('¡Gracias por contactarte! Nos comunicaremos a la brevedad.');
 
-    form.reset();
+        form.reset();
 
-});
+    });
+}
