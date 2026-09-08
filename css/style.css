@@ -205,6 +205,7 @@ ul {
     height: 3px;
     background: var(--dark-color);
     margin: 3px 0;
+    transition: var(--transition);
 }
 
 
@@ -219,6 +220,9 @@ ul {
     align-items: center;
 
     position: relative;
+
+    padding-top: 120px; /* Evita que el header fijo tape el contenido */
+    padding-bottom: 60px;
 
     background:
         linear-gradient(rgba(0,0,0,.65),
@@ -244,22 +248,22 @@ ul {
 }
 
 .hero h1 {
-    font-size: 4rem;
-    line-height: 1.1;
-    margin-bottom: 25px;
+    font-size: clamp(2.3rem, 4.5vw, 3.8rem);
+    line-height: 1.15;
+    margin-bottom: 20px;
 }
 
 .hero p {
     font-size: 1.1rem;
-    margin-bottom: 35px;
+    margin-bottom: 25px;
 }
 
 .hero-features {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 15px 25px;
 
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .hero-features i {
@@ -313,6 +317,55 @@ ul {
 
 .service-card h3 {
     margin-bottom: 15px;
+}
+
+
+/* ==================================================
+   REPUESTOS
+================================================== */
+
+.repuestos {
+    background: var(--primary-dark);
+    color: var(--white-color);
+}
+
+.repuestos-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.repuestos-image img {
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+}
+
+.repuestos-content span {
+    color: var(--secondary-color);
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.repuestos-content h2 {
+    font-size: 2.7rem;
+    margin: 20px 0;
+}
+
+.repuestos-content p {
+    margin-bottom: 30px;
+}
+
+.repuestos-content ul li {
+    margin-bottom: 20px;
+}
+
+.repuestos-content i {
+    color: var(--secondary-color);
+    margin-right: 10px;
 }
 
 
@@ -490,6 +543,34 @@ ul {
     height: 180px;
 }
 
+.contact-map {
+    width: 100%;
+    height: 380px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 2px solid var(--gray-color);
+    transition: var(--transition);
+}
+
+.contact-map:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.contact-map iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: grayscale(0.2) opacity(0.95);
+    transition: var(--transition);
+}
+
+.contact-map:hover iframe {
+    filter: grayscale(0) opacity(1);
+}
+
 
 /* ==================================================
    FOOTER
@@ -507,6 +588,26 @@ ul {
 .footer img {
     width: 180px;
     margin: 0 auto 20px;
+}
+
+.footer p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+}
+
+.footer p:last-child {
+    margin-bottom: 0;
+}
+
+.footer a.developer-link {
+    color: var(--secondary-color);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.footer a.developer-link:hover {
+    color: var(--white-color);
 }
 
 
@@ -530,6 +631,8 @@ ul {
 .about-item,
 .fleet-image,
 .fleet-content,
+.repuestos-image,
+.repuestos-content,
 .gallery-grid img{
 
     opacity: 0;
@@ -589,7 +692,6 @@ ul {
 
 @media(max-width: 992px) {
 
-    .nav-menu,
     .btn-nav {
         display: none;
     }
@@ -598,7 +700,20 @@ ul {
         display: flex;
     }
 
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
     .fleet-container,
+    .repuestos-container,
     .contact-container {
         grid-template-columns: 1fr;
     }
@@ -647,30 +762,30 @@ ul {
 
 @media(max-width:992px){
 
-    .nav-menu{
-
+    .nav-menu {
+        display: flex;
         position: absolute;
-
         top: 90px;
         left: -100%;
-
         width: 100%;
-
-        background: var(--white-color);
-
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
         flex-direction: column;
-
-        padding: 40px 0;
-
+        padding: 30px 0;
         text-align: center;
-
+        gap: 20px;
         box-shadow: var(--shadow-md);
-
-        transition: var(--transition);
+        transition: left .4s ease;
     }
 
-    .nav-menu.active{
+    .nav-menu.active {
         left: 0;
+    }
+
+    .nav-menu li a {
+        font-size: 1.1rem;
+        padding: 8px 0;
+        display: block;
     }
 
 }
